@@ -1,0 +1,14 @@
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.DAL.exe.config
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.DAL.exe
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.DAL.pdb
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.Models.exe
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.Models.pdb
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.exe
+C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.pdb
