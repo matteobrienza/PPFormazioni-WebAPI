@@ -53,10 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Championship.cs" />
+    <Compile Include="Models\Coach.cs" />
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Newspaper.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerMatch.cs" />
+    <Compile Include="Models\TeamChampionshipStats.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamNewspaperReliability.cs" />
     <Compile Include="Program.cs" />

@@ -11,7 +11,9 @@ namespace PPFormazioniAPI.Models
         public string Name { get; set; }
         public int Year { get; set; }
         public int CurrentMatchDayNumber { get; set; }
+        public int TotalMatchDaysNumber { get; set; }
         public virtual ICollection<Day> Days { get; set; }
         public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<TeamChampionshipStats> TeamsChampionshipStats { get; set; }
     }
 }

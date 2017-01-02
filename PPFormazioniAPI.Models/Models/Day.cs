@@ -10,7 +10,8 @@ namespace PPFormazioniAPI.Models
         public int Id { get; set; }
         public int Number { get; set; }
         public int ChampionshipId { get; set; }
-        public virtual Championship Championship{ get; set; }
+        //public virtual Championship Championship{ get; set; }
         public virtual ICollection<Match> Matches { get; set; }
+
     }
 }

@@ -8,3 +8,13 @@ C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniA
 C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.exe
 C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.pdb
 C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\PPFormazioniAPI.Models.exe.config
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\PPFormazioniAPI.Models.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\PPFormazioniAPI.Models.pdb
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\EntityFramework.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\EntityFramework.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.pdb

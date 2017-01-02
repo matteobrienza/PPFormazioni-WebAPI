@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PPFormazioniAPI.Models
 {
-    public class Newspaper
+    public class Coach
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Website_URL { get; set; }
+        public string Surname { get; set; }
+        public int TeamId { get; set; }
     }
 }
