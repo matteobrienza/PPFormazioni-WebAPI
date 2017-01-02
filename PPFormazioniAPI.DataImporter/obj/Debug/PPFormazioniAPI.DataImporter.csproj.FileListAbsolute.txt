@@ -18,9 +18,6 @@ C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniA
 C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe
 C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.exe.config
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.pdb
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.csprojResolveAssemblyReference.cache
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.exe
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\EntityFramework.dll
@@ -36,3 +33,6 @@ C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImpor
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\HtmlAgilityPack.xml
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.pdb

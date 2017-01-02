@@ -22,13 +22,13 @@ namespace PPFormazioniAPI.DataImporter
 
             PPFormazioniContext dbcontext = new PPFormazioniContext("Data Source=MATTEOBRIENZA;Initial Catalog=PPFormazioni;Integrated Security=True;MultipleActiveResultSets=True;");
 
-            //CreateCurrentDay(dbcontext);
+            CreateCurrentDay(dbcontext);
 
-            //GetTeamsFromGazzetta(dbcontext);
+            GetTeamsFromGazzetta(dbcontext);
 
             //GetTeamsFromCorriereDelloSport(dbcontext);
 
-            //GetTeamsFromSkySport(dbcontext);
+            GetTeamsFromSkySport(dbcontext);
 
             Console.ReadLine();
         }
@@ -86,6 +86,7 @@ namespace PPFormazioniAPI.DataImporter
                     var teamPlayersContainers = m.SelectSingleNode("descendant::div[@class='matchFieldInner']").Descendants("ul").Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("team-players")).Skip(1);
 
                     var teamSubPlayersContainer = m.SelectSingleNode("descendant::div[@class='matchFieldInner']").SelectSingleNode("descendant::div[@class='matchDetails']");
+
 
                     Team homeTeam = dbcontext.Teams.Where(t => t.FullName.Contains(homeTeamName)).FirstOrDefault();
 

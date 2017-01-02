@@ -201,7 +201,8 @@ namespace PPFormazioniAPI.DAL
                         MarketValue = (string)p["squadMarketValue"],
                         Logo_URL = (string)p["crestUrl"],
                         Players_URL = (string)p["_links"]["players"]["href"],
-                        Players = new List<Player>()
+                        Players = new List<Player>(),
+                        ChampionshipId = c.Id
                     }).ToList();
 
                     teams.ForEach(x => context.Teams.Add(x));

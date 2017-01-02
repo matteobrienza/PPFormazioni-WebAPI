@@ -28,18 +28,18 @@ namespace PPFormazioniAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
 
             // Add framework services.
             services.AddMvc();
 
             services.AddScoped((_) => new PPFormazioniContext(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,PPFormazioniContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, PPFormazioniContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();

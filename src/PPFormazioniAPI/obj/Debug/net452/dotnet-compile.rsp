@@ -131,5 +131,5 @@
 --resource:"C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\obj\Debug\net452\PPFormazioniAPIdotnet-compile.deps.json",PPFormazioniAPI.deps.json
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Program.cs
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Startup.cs
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Controllers\ChampionshipController.cs
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Controllers\ChampionshipsController.cs
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Controllers\ValuesController.cs
