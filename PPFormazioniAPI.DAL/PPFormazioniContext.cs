@@ -16,7 +16,7 @@ namespace PPFormazioniAPI.DAL
         {
             try
             {
-                Database.SetInitializer<PPFormazioniContext>(new PPFormazioniDatabaseInitializer());
+                //Database.SetInitializer<PPFormazioniContext>(new PPFormazioniDatabaseInitializer());
                 //Database.Initialize(true);
             }catch(Exception e)
             {

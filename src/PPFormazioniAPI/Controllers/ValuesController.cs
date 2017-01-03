@@ -13,6 +13,13 @@ namespace PPFormazioniAPI.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        public PPFormazioniContext dbContext;
+
+        public ValuesController(PPFormazioniContext c)
+        {
+            dbContext = c;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

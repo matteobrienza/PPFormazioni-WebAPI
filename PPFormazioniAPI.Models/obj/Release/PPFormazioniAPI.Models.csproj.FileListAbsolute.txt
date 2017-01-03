@@ -1,0 +1,10 @@
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\PPFormazioniAPI.Models.exe.config
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\PPFormazioniAPI.Models.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\PPFormazioniAPI.Models.pdb
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\EntityFramework.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\EntityFramework.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Release\PPFormazioniAPI.Models.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Release\PPFormazioniAPI.Models.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Release\PPFormazioniAPI.Models.pdb

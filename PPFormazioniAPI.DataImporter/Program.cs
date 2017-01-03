@@ -24,13 +24,192 @@ namespace PPFormazioniAPI.DataImporter
 
             CreateCurrentDay(dbcontext);
 
+            GetTeamsFromSkySport(dbcontext);
+
             GetTeamsFromGazzetta(dbcontext);
 
             //GetTeamsFromCorriereDelloSport(dbcontext);
-
-            GetTeamsFromSkySport(dbcontext);
-
+            
             Console.ReadLine();
+        }
+
+        public static void GetTeamsFromSkySport(PPFormazioniContext dbcontext)
+        {
+            try
+            {
+                Championship c = dbcontext.Championships.Where(ch => ch.Id == 1).FirstOrDefault();
+
+                HttpClient http = new HttpClient();
+
+                var response = http.GetByteArrayAsync(Constants.PF_SKYSPORT_URL);
+
+                String source = Encoding.GetEncoding("utf-8").GetString(response.Result, 0, response.Result.Length - 1);
+
+                source = WebUtility.HtmlDecode(source);
+
+                HtmlDocument res = new HtmlDocument();
+
+                res.LoadHtml(source);
+
+                var matches = res.DocumentNode.Descendants("div").Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("formazione-match"));
+
+                Day day = dbcontext.Days.Where(d => d.Number == c.CurrentMatchDayNumber).FirstOrDefault();
+
+                int i = 1;
+
+                foreach (var m in matches)
+                {
+                    string HomeTeamName = m.SelectSingleNode("descendant::div[@class='left']").SelectSingleNode("descendant::span[@class='name']").InnerText;
+                    string AwayTeamName = m.SelectSingleNode("descendant::div[@class='right']").SelectSingleNode("descendant::span[@class='name']").InnerText;
+
+                    string MatchDate = m.SelectSingleNode("descendant::span[@class='date']").InnerText;
+
+                    Debug.WriteLine("Match: " + i++ + " " + HomeTeamName.ToUpper() + " - " + AwayTeamName.ToUpper());
+
+                    Team homeTeam = dbcontext.Teams.Where(t => t.FullName.Contains(HomeTeamName)).FirstOrDefault();
+
+                    Team awayTeam = dbcontext.Teams.Where(t => t.FullName.Contains(AwayTeamName)).FirstOrDefault();
+
+                    Models.Match match = dbcontext.Matches.Where(mtc => mtc.AwayTeamId == awayTeam.Id && mtc.HomeTeamId == homeTeam.Id && mtc.DayId == day.Id).FirstOrDefault();
+
+                    if (match == null)
+                    {
+                        match = new Models.Match
+                        {
+                            HomeTeamId = homeTeam.Id,
+                            AwayTeamId = awayTeam.Id,
+                            DayId = day.Id,
+                            MatchDate = MatchDate,
+                            Players = new List<PlayerMatch>()
+                        };
+
+                        dbcontext.Matches.Add(match);
+
+                        day.Matches.Add(match);
+
+                        dbcontext.SaveChanges();
+                    }
+
+                    var homePlayerContainer = m.SelectSingleNode("descendant::div[@class='team-1 left']").SelectSingleNode("descendant::ul[@class='playerslist']").Descendants("li");
+
+                    foreach (var pHome in homePlayerContainer)
+                    {
+                        string HomePlayerName = pHome.SelectSingleNode("descendant::span[@class='name']").InnerText;
+                        string HomePlayerNumber = pHome.SelectSingleNode("descendant::span[@class='number']").InnerText;
+
+                        Player playerHome = dbcontext.Players.Where(pl => pl.Number.Equals(HomePlayerNumber) && pl.TeamId == homeTeam.Id).FirstOrDefault();
+
+                        if (playerHome != null)
+                        {
+                            PlayerMatch pmHome = new PlayerMatch
+                            {
+                                MatchId = match.Id,
+                                NewspaperId = 3,
+                                PlayerId = playerHome.Id,
+                                Status = 1
+                            };
+
+                            dbcontext.PlayerMatches.Add(pmHome);
+
+                            dbcontext.SaveChanges();
+                            match.Players.Add(pmHome);
+                            Debug.WriteLine(HomePlayerName + " " + HomePlayerNumber);
+                        }
+                        else Debug.WriteLine(HomePlayerName + " " + HomePlayerNumber + "  ################################not finded!");
+
+                    }
+
+                    //SUBSTITUTIONS HOME
+                    string subPlayersHome = m.SelectSingleNode("descendant::div[@class='team-1 left']").SelectSingleNode("descendant::dl[@class='otherlist']").SelectSingleNode("descendant::dt[text()='Panchina:']").NextSibling.InnerText;
+                    List<string> substitutionsHome = subPlayersHome.Replace(", ", ",").Split(',').ToList();
+                    Debug.WriteLine("A disposizione:\n");
+                    foreach (string sHome in substitutionsHome)
+                    {
+                        Player playerHome = dbcontext.Players.Where(pl => pl.Name.Contains(sHome) && pl.TeamId == homeTeam.Id).FirstOrDefault();
+
+                        if (playerHome != null)
+                        {
+                            PlayerMatch pmHome = new PlayerMatch
+                            {
+                                MatchId = match.Id,
+                                NewspaperId = 3,
+                                PlayerId = playerHome.Id,
+                                Status = 2
+                            };
+
+                            dbcontext.PlayerMatches.Add(pmHome);
+
+                            dbcontext.SaveChanges();
+                            match.Players.Add(pmHome);
+                            Debug.WriteLine(sHome);
+                        }
+                        else Debug.WriteLine(sHome + "  ################################not finded!");
+
+                    }
+
+                    var awayPlayerContainer = m.SelectSingleNode("descendant::div[@class='team-2 right']").SelectSingleNode("descendant::ul[@class='playerslist']").Descendants("li");
+
+                    foreach (var pAway in awayPlayerContainer)
+                    {
+                        string AwayPlayerName = pAway.SelectSingleNode("descendant::span[@class='name']").InnerText;
+                        string AwayPlayerNumber = pAway.SelectSingleNode("descendant::span[@class='number']").InnerText;
+
+                        Player playerAway = dbcontext.Players.Where(pl => pl.Number.Equals(AwayPlayerNumber) && pl.TeamId == awayTeam.Id).FirstOrDefault();
+
+                        if (playerAway != null)
+                        {
+                            PlayerMatch pmAway = new PlayerMatch
+                            {
+                                MatchId = match.Id,
+                                NewspaperId = 3,
+                                PlayerId = playerAway.Id,
+                                Status = 1
+                            };
+
+                            dbcontext.PlayerMatches.Add(pmAway);
+
+                            dbcontext.SaveChanges();
+                            match.Players.Add(pmAway);
+                            Debug.WriteLine(AwayPlayerName + " " + AwayPlayerNumber);
+                        }
+                        else Debug.WriteLine(AwayPlayerName + " " + AwayPlayerNumber + "  ################################not finded!");
+                    }
+
+                    //SUBSTITUTIONS AWAY
+                    string subPlayersAway = m.SelectSingleNode("descendant::div[@class='team-2 right']").SelectSingleNode("descendant::dl[@class='otherlist']").SelectSingleNode("descendant::dt[text()='Panchina:']").NextSibling.InnerText;
+                    List<string> substitutionsAway = subPlayersAway.Replace(", ", ",").Split(',').ToList();
+                    Debug.WriteLine("A disposizione\n");
+                    foreach (string sAway in substitutionsAway)
+                    {
+                        Player playerAway = dbcontext.Players.Where(pl => pl.Name.Contains(sAway) && pl.TeamId == awayTeam.Id).FirstOrDefault();
+
+                        if (playerAway != null)
+                        {
+                            PlayerMatch pmAway = new PlayerMatch
+                            {
+                                MatchId = match.Id,
+                                NewspaperId = 3,
+                                PlayerId = playerAway.Id,
+                                Status = 2
+                            };
+
+                            dbcontext.PlayerMatches.Add(pmAway);
+
+                            dbcontext.SaveChanges();
+                            match.Players.Add(pmAway);
+                            Debug.WriteLine(sAway);
+                        }
+                        else Debug.WriteLine(sAway + "  ################################not finded!");
+                    }
+
+                }
+
+                dbcontext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public static void CreateCurrentDay(PPFormazioniContext context)
@@ -311,181 +490,7 @@ namespace PPFormazioniAPI.DataImporter
             }
         }
 
-        public static void GetTeamsFromSkySport(PPFormazioniContext dbcontext)
-        {
-            try
-            {
-                Championship c = dbcontext.Championships.Where(ch => ch.Id == 1).FirstOrDefault();
-
-                HttpClient http = new HttpClient();
-
-                var response = http.GetByteArrayAsync(Constants.PF_SKYSPORT_URL);
-
-                String source = Encoding.GetEncoding("utf-8").GetString(response.Result, 0, response.Result.Length - 1);
-
-                source = WebUtility.HtmlDecode(source);
-
-                HtmlDocument res = new HtmlDocument();
-
-                res.LoadHtml(source);
-
-                var matches = res.DocumentNode.Descendants("div").Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("formazione-match"));
-
-                Day day = dbcontext.Days.Where(d => d.Number == c.CurrentMatchDayNumber).FirstOrDefault();
-
-                int i = 1;
-
-                foreach (var m in matches)
-                {
-                    string HomeTeamName = m.SelectSingleNode("descendant::div[@class='left']").SelectSingleNode("descendant::span[@class='name']").InnerText;
-                    string AwayTeamName = m.SelectSingleNode("descendant::div[@class='right']").SelectSingleNode("descendant::span[@class='name']").InnerText;
-
-                    Debug.WriteLine("Match: " + i++ + " " + HomeTeamName.ToUpper() + " - " + AwayTeamName.ToUpper());
-
-                    Team homeTeam = dbcontext.Teams.Where(t => t.FullName.Contains(HomeTeamName)).FirstOrDefault();
-
-                    Team awayTeam = dbcontext.Teams.Where(t => t.FullName.Contains(AwayTeamName)).FirstOrDefault();
-
-                    Models.Match match = dbcontext.Matches.Where(mtc => mtc.AwayTeamId == awayTeam.Id && mtc.HomeTeamId == homeTeam.Id && mtc.DayId == day.Id).FirstOrDefault();
-
-                    if (match == null)
-                    {
-                        match = new Models.Match
-                        {
-                            HomeTeamId = homeTeam.Id,
-                            AwayTeamId = awayTeam.Id,
-                            DayId = day.Id,
-                            Players = new List<PlayerMatch>()
-                        };
-
-                        dbcontext.Matches.Add(match);
-
-                        day.Matches.Add(match);
-
-                        dbcontext.SaveChanges();
-                    }
-
-                    var homePlayerContainer = m.SelectSingleNode("descendant::div[@class='team-1 left']").SelectSingleNode("descendant::ul[@class='playerslist']").Descendants("li");
-
-                    foreach (var pHome in homePlayerContainer)
-                    {
-                        string HomePlayerName = pHome.SelectSingleNode("descendant::span[@class='name']").InnerText;
-                        string HomePlayerNumber = pHome.SelectSingleNode("descendant::span[@class='number']").InnerText;
-
-                        Player playerHome = dbcontext.Players.Where(pl => pl.Number.Equals(HomePlayerNumber) && pl.TeamId == homeTeam.Id).FirstOrDefault();
-
-                        if (playerHome != null)
-                        {
-                            PlayerMatch pmHome = new PlayerMatch
-                            {
-                                MatchId = match.Id,
-                                NewspaperId = 3,
-                                PlayerId = playerHome.Id,
-                                Status = 1
-                            };
-
-                            dbcontext.PlayerMatches.Add(pmHome);
-
-                            dbcontext.SaveChanges();
-                            match.Players.Add(pmHome);
-                            Debug.WriteLine(HomePlayerName + " " + HomePlayerNumber);
-                        }
-                        else Debug.WriteLine(HomePlayerName + " " + HomePlayerNumber + "  ################################not finded!");
-
-                    }
-
-                    //SUBSTITUTIONS HOME
-                    string subPlayersHome = m.SelectSingleNode("descendant::div[@class='team-1 left']").SelectSingleNode("descendant::dl[@class='otherlist']").SelectSingleNode("descendant::dt[text()='Panchina:']").NextSibling.InnerText;
-                    List<string> substitutionsHome = subPlayersHome.Replace(", ", ",").Split(',').ToList();
-                    Debug.WriteLine("A disposizione:\n");
-                    foreach (string sHome in substitutionsHome)
-                    {
-                        Player playerHome = dbcontext.Players.Where(pl => pl.Name.Contains(sHome) && pl.TeamId == homeTeam.Id).FirstOrDefault();
-
-                        if (playerHome != null)
-                        {
-                            PlayerMatch pmHome = new PlayerMatch
-                            {
-                                MatchId = match.Id,
-                                NewspaperId = 3,
-                                PlayerId = playerHome.Id,
-                                Status = 2
-                            };
-
-                            dbcontext.PlayerMatches.Add(pmHome);
-
-                            dbcontext.SaveChanges();
-                            match.Players.Add(pmHome);
-                            Debug.WriteLine(sHome);
-                        }
-                        else Debug.WriteLine(sHome + "  ################################not finded!");
-
-                    }
-
-                    var awayPlayerContainer = m.SelectSingleNode("descendant::div[@class='team-2 right']").SelectSingleNode("descendant::ul[@class='playerslist']").Descendants("li");
-
-                    foreach (var pAway in awayPlayerContainer)
-                    {
-                        string AwayPlayerName = pAway.SelectSingleNode("descendant::span[@class='name']").InnerText;
-                        string AwayPlayerNumber = pAway.SelectSingleNode("descendant::span[@class='number']").InnerText;
-
-                        Player playerAway = dbcontext.Players.Where(pl => pl.Number.Equals(AwayPlayerNumber) && pl.TeamId == awayTeam.Id).FirstOrDefault();
-
-                        if (playerAway != null)
-                        {
-                            PlayerMatch pmAway = new PlayerMatch
-                            {
-                                MatchId = match.Id,
-                                NewspaperId = 3,
-                                PlayerId = playerAway.Id,
-                                Status = 1
-                            };
-
-                            dbcontext.PlayerMatches.Add(pmAway);
-
-                            dbcontext.SaveChanges();
-                            match.Players.Add(pmAway);
-                            Debug.WriteLine(AwayPlayerName + " " + AwayPlayerNumber);
-                        }
-                        else Debug.WriteLine(AwayPlayerName + " " + AwayPlayerNumber + "  ################################not finded!");
-                    }
-
-                    //SUBSTITUTIONS AWAY
-                    string subPlayersAway = m.SelectSingleNode("descendant::div[@class='team-2 right']").SelectSingleNode("descendant::dl[@class='otherlist']").SelectSingleNode("descendant::dt[text()='Panchina:']").NextSibling.InnerText;
-                    List<string> substitutionsAway = subPlayersAway.Replace(", ", ",").Split(',').ToList();
-                    Debug.WriteLine("A disposizione\n");
-                    foreach (string sAway in substitutionsAway)
-                    {
-                        Player playerAway = dbcontext.Players.Where(pl => pl.Name.Contains(sAway) && pl.TeamId == awayTeam.Id).FirstOrDefault();
-
-                        if (playerAway != null)
-                        {
-                            PlayerMatch pmAway = new PlayerMatch
-                            {
-                                MatchId = match.Id,
-                                NewspaperId = 3,
-                                PlayerId = playerAway.Id,
-                                Status = 2
-                            };
-
-                            dbcontext.PlayerMatches.Add(pmAway);
-
-                            dbcontext.SaveChanges();
-                            match.Players.Add(pmAway);
-                            Debug.WriteLine(sAway);
-                        }
-                        else Debug.WriteLine(sAway + "  ################################not finded!");
-                    }
-
-                }
-
-                dbcontext.SaveChanges();
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
+        
 
 
     }

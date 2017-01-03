@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiVM290YVe0uJvHu4kJpglgAAAAACAAAAAAAQZgAAAAEAACAAAABRSqVVl57K7qxJN7siL71RCixT9pAeyz8P+7nWPZOizAAAAAAOgAAAAAIAACAAAACYsvIBnvm+l2NG/WwBTFSCR96u8Uxv2VeHs9KDTdCmOYAAAACcpMs9fiI+QxyDHqzOx3Du1ICw3VVhd3sJuv8quDCzulImSopiJl3SsNWgNlz38XQY1Ra9eU6/2X341ldp31YgPtcvGR7iJZnLzZFd/YJD3cZCtPXAv2maRlAEZRc92pFTqoygaDjMLWYQEWjTBxFfh0+lB14mC2FjtaxlejP+AEAAAAANEbby/R6DEAlGawSoPhny1MffZcbqjH/wdiKfhRacI+e+42Cs4y1dYagWzYFB2bu6Fs7yU3Uga+ExM9m3xzS0</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:ppformazioni.database.windows.net,1433;Initial Catalog=PPFormazioni;User Id=matteo.brienza@nttdata.com@ppformazioni.database.windows.net;Password=Sslazio1900!;</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

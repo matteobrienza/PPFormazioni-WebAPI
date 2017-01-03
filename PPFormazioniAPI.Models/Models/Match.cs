@@ -15,9 +15,9 @@ namespace PPFormazioniAPI.Models
         [ForeignKey("AwayTeam"), Column(Order = 1)]
         public int AwayTeamId { get; set; }
         public int DayId { get; set; }
+        public string MatchDate { get; set; }
         public virtual Team HomeTeam { get; set; }
         public virtual Team AwayTeam { get; set; }
-        //public virtual Day Day { get; set; }
         public virtual ICollection<PlayerMatch> Players { get; set; }
 
     }

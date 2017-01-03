@@ -1,0 +1,14 @@
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\PPFormazioniAPI.DAL.exe.config
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\PPFormazioniAPI.DAL.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\PPFormazioniAPI.DAL.pdb
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\EntityFramework.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\Newtonsoft.Json.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\PPFormazioniAPI.Models.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\PPFormazioniAPI.Models.pdb
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\EntityFramework.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Release\Newtonsoft.Json.xml
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Release\PPFormazioniAPI.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Release\PPFormazioniAPI.DAL.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Release\PPFormazioniAPI.DAL.pdb
