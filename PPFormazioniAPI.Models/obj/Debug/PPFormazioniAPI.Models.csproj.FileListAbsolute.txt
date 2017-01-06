@@ -17,3 +17,4 @@ C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bi
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.exe
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.pdb
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\obj\Debug\PPFormazioniAPI.Models.csprojResolveAssemblyReference.cache

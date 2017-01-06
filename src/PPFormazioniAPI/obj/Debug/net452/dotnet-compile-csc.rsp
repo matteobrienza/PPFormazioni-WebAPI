@@ -97,6 +97,7 @@
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.IO.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Linq.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Linq.Expressions.dll"
+-r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll"
 -r:"C:\Users\Matteo\.nuget\packages\System.Numerics.Vectors\4.1.1\ref\netstandard1.0\System.Numerics.Vectors.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Reflection.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Reflection.Extensions.dll"
@@ -128,4 +129,5 @@
 "C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Program.cs"
 "C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Startup.cs"
 "C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Controllers\ChampionshipsController.cs"
+"C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Controllers\UsersController.cs"
 "C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\Controllers\ValuesController.cs"

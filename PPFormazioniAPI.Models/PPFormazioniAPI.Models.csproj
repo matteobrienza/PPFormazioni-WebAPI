@@ -57,12 +57,14 @@
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Newspaper.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerMatch.cs" />
     <Compile Include="Models\TeamChampionshipStats.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamChampionshipStatsWithDetail.cs" />
     <Compile Include="Models\TeamNewspaperReliability.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

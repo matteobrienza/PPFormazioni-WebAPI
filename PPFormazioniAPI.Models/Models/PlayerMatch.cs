@@ -13,6 +13,7 @@ namespace PPFormazioniAPI.Models
         public int Id { get; set; }
         public int MatchId { get; set; }
         public int PlayerId { get; set; }
+        public virtual Player Player { get; set; }
         public int NewspaperId { get; set; }
         public int Status { get; set; }
 

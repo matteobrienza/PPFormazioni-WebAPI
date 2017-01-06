@@ -16,9 +16,10 @@ namespace PPFormazioniAPI.DAL
         {
             try
             {
-                //Database.SetInitializer<PPFormazioniContext>(new PPFormazioniDatabaseInitializer());
-                //Database.Initialize(true);
-            }catch(Exception e)
+                Database.SetInitializer<PPFormazioniContext>(new PPFormazioniDatabaseInitializer());
+                Database.Initialize(true);
+            }
+            catch(Exception e)
             {
 
             }
@@ -36,6 +37,7 @@ namespace PPFormazioniAPI.DAL
         public DbSet<PlayerMatch> PlayerMatches { get; set; }
         public DbSet<Coach> Coaches { get; set; }
         public DbSet<TeamChampionshipStats> TeamsChampionshipStats { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

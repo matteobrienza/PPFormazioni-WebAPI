@@ -25,7 +25,8 @@ namespace PPFormazioniAPI.Controllers
             try
             {
                 return dbContext.Championships.ToList();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -38,6 +39,35 @@ namespace PPFormazioniAPI.Controllers
             try
             {
                 return dbContext.Championships.Where(c => c.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("{id}/days")]
+        public IEnumerable<Day> GetDays(int id)
+        {
+            try
+            {
+                Championship c = dbContext.Championships.Where(ch => ch.Id == id).FirstOrDefault();
+                return dbContext.Days.Where(d => d.ChampionshipId == id).OrderByDescending(md => md.Number).ToList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
+        [HttpGet("{id}/days/{dayId}")]
+        public Day GetDay(int id, int dayId)
+        {
+            try
+            {
+                Championship c = dbContext.Championships.Where(ch => ch.Id == id).FirstOrDefault();
+                return dbContext.Days.Where(d => d.ChampionshipId == id && d.Id == dayId).FirstOrDefault();
             }
             catch (Exception e)
             {
@@ -73,15 +103,92 @@ namespace PPFormazioniAPI.Controllers
             }
         }
 
+        [HttpGet("{id}/newspapers")]
+        public IEnumerable<Newspaper> GetNewspapers(int id)
+        {
+            try
+            {
+
+                return dbContext.Newspapers.Where(n => n.ChampionshipId == id).ToList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("{id}/newspapers/{newspaperId}")]
+        public Newspaper GetNewspaper(int id, int newspaperId)
+        {
+            try
+            {
+
+                return dbContext.Newspapers.Where(n => n.ChampionshipId == id && n.Id == newspaperId).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("{id}/newspapers/{newspaperId}/matches")]
+        public IEnumerable<Match> GetNewspaperMatches(int id, int newspaperId)
+        {
+            try
+            {
+                Newspaper newspaper = dbContext.Newspapers.Where(n => n.ChampionshipId == id && n.Id == newspaperId).FirstOrDefault();
+
+                return (from pm in dbContext.PlayerMatches
+                        join m in dbContext.Matches on pm.MatchId equals m.Id
+                        where pm.NewspaperId == newspaper.Id
+                        select m).ToList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("{id}/newspapers/{newspaperId}/matches/{matchId}")]
+        public Match GetNewspaperMatch(int id, int newspaperId, int matchId)
+        {
+            try
+            {
+                Newspaper newspaper = dbContext.Newspapers.Where(n => n.ChampionshipId == id && n.Id == newspaperId).FirstOrDefault();
+
+                Match m = dbContext.Matches.Where(mat => mat.Id == matchId).FirstOrDefault();
+
+                List<PlayerMatch> plMatch = (from pm in dbContext.PlayerMatches
+                                             join mt in dbContext.Matches on pm.MatchId equals mt.Id
+                                             where pm.NewspaperId == newspaper.Id && mt.Id == matchId
+                                             select pm).ToList();
+                return new Match
+                {
+                    Id = m.Id,
+                    AwayTeam = m.AwayTeam,
+                    AwayTeamId = m.AwayTeamId,
+                    HomeTeam = m.HomeTeam,
+                    HomeTeamId = m.HomeTeamId,
+                    DayId = m.DayId,
+                    MatchDate = m.MatchDate,
+                    Players = plMatch
+                };
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         [HttpGet("{id}/players")]
         public IEnumerable<Player> GetPlayers(int id)
         {
             try
             {
                 return (from p in dbContext.Players
-                       join t in dbContext.Teams on p.TeamId equals t.Id
-                       where t.ChampionshipId == id
-                       select p).ToList();
+                        join t in dbContext.Teams on p.TeamId equals t.Id
+                        where t.ChampionshipId == id
+                        select p).ToList();
             }
             catch (Exception e)
             {
@@ -106,17 +213,18 @@ namespace PPFormazioniAPI.Controllers
         }
 
         [HttpGet("{id}/standings")]
-        public IEnumerable<TeamChampionshipStatsWithDetail> GetStandings(int id)
+        public IEnumerable<TeamChampionshipStatsWithDetail> GetAllStandings(int id)
         {
             try
             {
-                return  from s in dbContext.TeamsChampionshipStats
+                return (from s in dbContext.TeamsChampionshipStats
                         join t in dbContext.Teams on s.TeamId equals t.Id
                         where t.ChampionshipId == id
-                        select new TeamChampionshipStatsWithDetail{
-                             Team = t,
-                             Stats = s
-                        };
+                        select new TeamChampionshipStatsWithDetail
+                        {
+                            Team = t,
+                            Stats = s
+                        }).ToList();
             }
             catch (Exception e)
             {
@@ -130,19 +238,19 @@ namespace PPFormazioniAPI.Controllers
             try
             {
                 return (from s in dbContext.TeamsChampionshipStats
-                       join t in dbContext.Teams on s.TeamId equals t.Id
-                       where t.ChampionshipId == id && t.Id == teamId
-                       select new TeamChampionshipStatsWithDetail
-                       {
-                           Team = t,
-                           Stats = s
-                       }).FirstOrDefault();
+                        join t in dbContext.Teams on s.TeamId equals t.Id
+                        where t.ChampionshipId == id && t.Id == teamId
+                        select new TeamChampionshipStatsWithDetail
+                        {
+                            Team = t,
+                            Stats = s
+                        }).FirstOrDefault();
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        
+
     }
 }

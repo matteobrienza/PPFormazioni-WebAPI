@@ -1,8 +1,4 @@
-#:C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj
-C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj|C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.Models\PPFormazioniAPI.Models.csproj
-C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj|C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\PPFormazioniAPI.DAL.csproj
-#:C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\PPFormazioniAPI.DataImporter.csproj
-C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\PPFormazioniAPI.DataImporter.csproj|C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.Models\PPFormazioniAPI.Models.csproj
-C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\PPFormazioniAPI.DataImporter.csproj|C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj
-C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj|C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.Models\PPFormazioniAPI.Models.csproj
-C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj|C:\Users\Matteo\Documents\Visual Studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DAL\PPFormazioniAPI.DAL.csproj
+#:C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj|C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\PPFormazioniAPI.DAL.csproj
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\src\PPFormazioniAPI\PPFormazioniAPI.xproj|C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\PPFormazioniAPI.Models.csproj
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\PPFormazioniAPI.DAL.csproj|C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.Models\PPFormazioniAPI.Models.csproj

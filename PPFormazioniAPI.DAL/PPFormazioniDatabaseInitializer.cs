@@ -10,57 +10,27 @@ using System.Threading.Tasks;
 
 namespace PPFormazioniAPI.DAL
 {
-    public class PPFormazioniDatabaseInitializer : DropCreateDatabaseIfModelChanges<PPFormazioniContext>
+    public class PPFormazioniDatabaseInitializer : DropCreateDatabaseAlways<PPFormazioniContext>
     {
         protected override void Seed(PPFormazioniContext context)
         {
             PopulateChampionships(context);
-            PopulateTeams(context);
             PopulateCoaches(context);
+            PopulateTeams(context);
             PopulatePlayers(context);
             PopulateNewspaper(context);
             PopulateTeamNewspaperReliability(context);
             PopulateStanding(context);
         }
-
-
-        public void PopulateCoaches(PPFormazioniContext context)
-        {
-            var coaches = new List<Coach>
-            {
-                new Coach { Name="Luciano", Surname="Spalletti", TeamId=1},
-                new Coach { Name="Luigi", Surname="Delneri", TeamId=2},
-                new Coach { Name="Massimiliano", Surname="Allegri", TeamId=3},
-                new Coach { Name="Paulo", Surname="Sousa", TeamId=4},
-                new Coach { Name="Vincenzo", Surname="Montella", TeamId=5},
-                new Coach { Name="Sinisa", Surname="Mihajlovic", TeamId=6},
-                new Coach { Name="Rolando", Surname="Maran", TeamId=7},
-                new Coach { Name="Stefano", Surname="Pioli", TeamId=8},
-                new Coach { Name="Giovanni", Surname="Martusciello", TeamId=9},
-                new Coach { Name="Marco", Surname="Giampaolo", TeamId=10},
-                new Coach { Name="Ivan", Surname="Jurić", TeamId=11},
-                new Coach { Name="Massimo", Surname="Rastelli", TeamId=12},
-                new Coach { Name="Roberto", Surname="Donadoni", TeamId=13},
-                new Coach { Name="Davide", Surname="Nicola", TeamId=14},
-                new Coach { Name="Eugenio", Surname="Corini", TeamId=15},
-                new Coach { Name="Eusebio", Surname="Di Francesco", TeamId=16},
-                new Coach { Name="Massimo", Surname="Oddo", TeamId=17},
-                new Coach { Name="Maurizio", Surname="Sarri", TeamId=18},
-                new Coach { Name="Gian Piero", Surname="Gasperini", TeamId=19},
-                new Coach { Name="Simone", Surname="Inzaghi", TeamId=20}
-            };
-
-            coaches.ForEach(c => context.Coaches.Add(c));
-            context.SaveChanges();
-        }
+        
 
         public void PopulateNewspaper(PPFormazioniContext context)
         {
             var newspapers = new List<Newspaper>
             {
-                new Newspaper { Name = "Gazzetta dello Sport", Website_URL = "http://www.gazzetta.it/Calcio/prob_form/" },
-                new Newspaper { Name = "Corriere dello Sport", Website_URL = "http://www.corrieredellosport.it/calcio/serie-a/probabili-formazioni/" },
-                new Newspaper { Name = "Sky Sport", Website_URL = "http://sport.sky.it/calcio/serie-a/probabili-formazioni/" }
+                new Newspaper { Name = "Gazzetta dello Sport", Website_URL = "http://www.gazzetta.it/Calcio/prob_form/", ChampionshipId=1},
+                new Newspaper { Name = "Corriere dello Sport", Website_URL = "http://www.corrieredellosport.it/calcio/serie-a/probabili-formazioni/", ChampionshipId=1 },
+                new Newspaper { Name = "Sky Sport", Website_URL = "http://sport.sky.it/calcio/serie-a/probabili-formazioni/", ChampionshipId=1 }
             };
 
             newspapers.ForEach(n => context.Newspapers.Add(n));
@@ -194,6 +164,8 @@ namespace PPFormazioniAPI.DAL
 
                     JArray json_teams = JArray.Parse(response["teams"].ToString());
 
+                    int i = 1;
+
                     List<Team> teams = json_teams.Select(p => new Team
                     {
                         FullName = (string)p["name"],
@@ -202,7 +174,8 @@ namespace PPFormazioniAPI.DAL
                         Logo_URL = (string)p["crestUrl"],
                         Players_URL = (string)p["_links"]["players"]["href"],
                         Players = new List<Player>(),
-                        ChampionshipId = c.Id
+                        ChampionshipId = c.Id,
+                        CoachId = i++
                     }).ToList();
 
                     teams.ForEach(x => context.Teams.Add(x));
@@ -331,6 +304,43 @@ namespace PPFormazioniAPI.DAL
             return context.Teams.Where(t => t.FullName.Contains(TeamName)).FirstOrDefault().Id;
         }
 
+        public void PopulateCoaches(PPFormazioniContext context)
+        {
+            try
+            {
+                var coaches = new List<Coach>
+            {
+                new Coach { Name="Luciano", Surname="Spalletti", TeamId=1},
+                new Coach { Name="Luigi", Surname="Delneri", TeamId=2},
+                new Coach { Name="Massimiliano", Surname="Allegri", TeamId=3},
+                new Coach { Name="Paulo", Surname="Sousa", TeamId=4},
+                new Coach { Name="Vincenzo", Surname="Montella", TeamId=5},
+                new Coach { Name="Sinisa", Surname="Mihajlovic", TeamId=6},
+                new Coach { Name="Rolando", Surname="Maran", TeamId=7},
+                new Coach { Name="Stefano", Surname="Pioli", TeamId=8},
+                new Coach { Name="Giovanni", Surname="Martusciello", TeamId=9},
+                new Coach { Name="Marco", Surname="Giampaolo", TeamId=10},
+                new Coach { Name="Ivan", Surname="Jurić", TeamId=11},
+                new Coach { Name="Massimo", Surname="Rastelli", TeamId=12},
+                new Coach { Name="Roberto", Surname="Donadoni", TeamId=13},
+                new Coach { Name="Davide", Surname="Nicola", TeamId=14},
+                new Coach { Name="Eugenio", Surname="Corini", TeamId=15},
+                new Coach { Name="Eusebio", Surname="Di Francesco", TeamId=16},
+                new Coach { Name="Massimo", Surname="Oddo", TeamId=17},
+                new Coach { Name="Maurizio", Surname="Sarri", TeamId=18},
+                new Coach { Name="Gian Piero", Surname="Gasperini", TeamId=19},
+                new Coach { Name="Simone", Surname="Inzaghi", TeamId=20}
+            };
+
+                coaches.ForEach(c => context.Coaches.Add(c));
+                context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+
+            }
+            
+        }
 
     }
 }

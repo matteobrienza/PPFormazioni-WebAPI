@@ -14,6 +14,8 @@ namespace PPFormazioniAPI.Models
         public string Logo_URL { get; set; }
         public string Players_URL { get; set; }
         public int ChampionshipId { get; set; }
+        public int CoachId { get; set; }
+        public virtual Coach Coach { get; set; }
         public virtual ICollection<Player> Players { get; set; }
         
     }
