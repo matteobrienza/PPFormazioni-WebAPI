@@ -52,6 +52,7 @@
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.AspNetCore.Routing.Abstractions\1.0.0\lib\net451\Microsoft.AspNetCore.Routing.Abstractions.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.AspNetCore.Server.IISIntegration\1.0.0\lib\net451\Microsoft.AspNetCore.Server.IISIntegration.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.AspNetCore.Server.Kestrel\1.0.1\lib\net451\Microsoft.AspNetCore.Server.Kestrel.dll
+--reference:C:\Users\Matteo\.nuget\packages\Microsoft.AspNetCore.StaticFiles\1.0.0\lib\net451\Microsoft.AspNetCore.StaticFiles.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.AspNetCore.WebUtilities\1.0.0\lib\net451\Microsoft.AspNetCore.WebUtilities.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.CodeAnalysis.Common\1.3.0\lib\net45\Microsoft.CodeAnalysis.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.CodeAnalysis.CSharp\1.3.0\lib\net45\Microsoft.CodeAnalysis.CSharp.dll
@@ -70,6 +71,7 @@
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.DependencyModel\1.0.0\lib\net451\Microsoft.Extensions.DependencyModel.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.FileProviders.Abstractions\1.0.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.FileProviders.Composite\1.0.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Composite.dll
+--reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.FileProviders.Embedded\1.0.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Embedded.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.FileProviders.Physical\1.0.0\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.FileSystemGlobbing\1.0.0\lib\net451\Microsoft.Extensions.FileSystemGlobbing.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.Globalization.CultureInfoCache\1.0.0\lib\netstandard1.1\Microsoft.Extensions.Globalization.CultureInfoCache.dll
@@ -87,6 +89,9 @@
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Extensions.WebEncoders\1.0.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll
 --reference:C:\Users\Matteo\.nuget\packages\Microsoft.Net.Http.Headers\1.0.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll
 --reference:C:\Users\Matteo\.nuget\packages\Newtonsoft.Json\9.0.1\lib\net45\Newtonsoft.Json.dll
+--reference:C:\Users\Matteo\.nuget\packages\Swashbuckle.Swagger\6.0.0-beta902\lib\net451\Swashbuckle.Swagger.dll
+--reference:C:\Users\Matteo\.nuget\packages\Swashbuckle.SwaggerGen\6.0.0-beta902\lib\net451\Swashbuckle.SwaggerGen.dll
+--reference:C:\Users\Matteo\.nuget\packages\Swashbuckle.SwaggerUi\6.0.0-beta902\lib\net451\Swashbuckle.SwaggerUi.dll
 --reference:C:\Users\Matteo\.nuget\packages\System.Buffers\4.0.0\lib\netstandard1.1\System.Buffers.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Collections.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Collections.Concurrent.dll

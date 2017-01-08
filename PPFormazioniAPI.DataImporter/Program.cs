@@ -35,7 +35,7 @@ namespace PPFormazioniAPI.DataImporter
 
             GetTeamsFromSkySport(dbcontext);
 
-            NotifyClient();
+            NotifyClient(dbcontext);
 
             //START WEB API
 
@@ -515,7 +515,7 @@ namespace PPFormazioniAPI.DataImporter
                                 PlayerMatch pmAway = new PlayerMatch
                                 {
                                     MatchId = match.Id,
-                                    NewspaperId = 3,
+                                    NewspaperId = 2,
                                     PlayerId = playerAway.Id,
                                     Status = 1
                                 };
@@ -546,7 +546,7 @@ namespace PPFormazioniAPI.DataImporter
                                 PlayerMatch pmAway = new PlayerMatch
                                 {
                                     MatchId = match.Id,
-                                    NewspaperId = 3,
+                                    NewspaperId = 2,
                                     PlayerId = playerAway.Id,
                                     Status = 1
                                 };
@@ -616,7 +616,7 @@ namespace PPFormazioniAPI.DataImporter
                                 PlayerMatch pmAway = new PlayerMatch
                                 {
                                     MatchId = match.Id,
-                                    NewspaperId = 3,
+                                    NewspaperId = 2,
                                     PlayerId = playerAway.Id,
                                     Status = 2
                                 };
@@ -647,7 +647,7 @@ namespace PPFormazioniAPI.DataImporter
                                 PlayerMatch pmAway = new PlayerMatch
                                 {
                                     MatchId = match.Id,
-                                    NewspaperId = 3,
+                                    NewspaperId = 2,
                                     PlayerId = playerAway.Id,
                                     Status = 2
                                 };
@@ -730,6 +730,11 @@ namespace PPFormazioniAPI.DataImporter
                         dbcontext.Matches.Add(match);
 
                         day.Matches.Add(match);
+
+                        dbcontext.SaveChanges();
+                    }else
+                    {
+                        match.MatchDate = MatchDate;
 
                         dbcontext.SaveChanges();
                     }
@@ -987,7 +992,7 @@ namespace PPFormazioniAPI.DataImporter
             }
         }
 
-        public static void NotifyClient()
+        public static void NotifyClient(PPFormazioniContext dbcontext)
         {
             Console.WriteLine();
             Console.WriteLine("FCM - Starting Notify Android Client");
@@ -1004,12 +1009,28 @@ namespace PPFormazioniAPI.DataImporter
                     body = "New Lineups Avaiable",
                     title = "Lineups Updated"
                 };
-                Notification notification = new Notification
+                NotificationClient notification = new NotificationClient
                 {
                     to = "/topics/lineups_update",
                     data = nm,
                     notification = no
                 };
+
+
+                //Save Notification to DB
+                List<User> users = dbcontext.Users.ToList();
+                foreach(User u in users)
+                {
+                    dbcontext.Notifications.Add(new Notification
+                    {
+                         Body = no.body,
+                         Title = no.title,
+                         UserId = u.Id,
+                         CreatedAt = DateTime.Now
+                    });
+                    dbcontext.SaveChanges();
+                }
+
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(notification);
                 client.Headers["Content-Type"] = "application/json";
                 client.Headers["Authorization"] = "key=AAAA2yHRE0w:APA91bEVyqARWsF5_HaCUdhfNEA3K1nxkDTOSES2nzYqmj8J2PeAJ2lTRdyrMPEJ7xEjyudcuCjrevvpfFCCAtNNmuTpIbL68j2KaSAYdpxoESap3Uqx1R6yovQOnAy-8ikoyL2iFFBJRPdDQANwvHsjflGIr3bKKA";

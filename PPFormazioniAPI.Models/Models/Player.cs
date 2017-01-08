@@ -16,6 +16,14 @@ namespace PPFormazioniAPI.Models
         public string DateOfBirth { get; set; }
         public string ContractUntil { get; set; }
         public int TeamId { get; set; }
-        //public virtual Team Team { get; set; }
+
+        public string getMacroRole()
+        {
+            if (Position == null) return "";
+            if (Position.Contains("Keeper")) return "keeper";
+            if (Position.Contains("Back")) return "defender";
+            if (Position.Contains("Midfield") || Position.Contains("Wing")) return "midfilder";
+            return "striker";
+        }
     }
 }

@@ -23,16 +23,48 @@ namespace PPFormazioniAPI.Controllers
 
         // GET: api/users
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return dbContext.Users.ToList();
+            }catch(Exception e)
+            {
+                return null;
+            }
         }
 
         // GET api/users/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            try
+            {
+                return dbContext.Users.Where(u => u.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public class PostModel
+        {
+            public List<PlayerModel> Lineup { get; set; }
+        }
+
+        public class PlayerModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public bool Selected { get; set; }
+        }
+        
+
+        [HttpPost("{id}/lineup")]
+        public ActionResult SaveLineups([FromBody]PostModel Lineup)
+        {
+            return null;
         }
 
         // POST api/users
@@ -90,17 +122,33 @@ namespace PPFormazioniAPI.Controllers
 
 
         }
+        
 
-        // PUT api/users/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpGet("{id}/notifications")]
+        public IEnumerable<Notification> getNotifications(int id)
         {
+            try
+            {
+                return dbContext.Notifications.Where(n => n.UserId == id).ToList();
+            }catch(Exception e)
+            {
+                return null;
+            }
         }
 
-        // DELETE api/users/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id}/notifications/{notificationId}")]
+        public void Delete(int id, int notificationId)
         {
+            List<Notification> user_notifications = dbContext.Notifications.Where(n => n.UserId == id).ToList();
+
+            Notification n_remove = user_notifications.Where(n => n.Id == notificationId).FirstOrDefault();
+
+            if(n_remove != null)
+            {
+                dbContext.Notifications.Remove(n_remove);
+
+                dbContext.SaveChanges();
+            }
         }
 
 
@@ -113,20 +161,36 @@ namespace PPFormazioniAPI.Controllers
             {
                 NotificationMessage nm = new NotificationMessage
                 {
-                    body = "New Lineups Avaiable",
-                    title = "Lineups Updated!"
+                    body = "This is a Test Notification",
+                    title = "TEST NOTIFICATION"
                 };
                 NotificationObject no = new NotificationObject
                 {
-                    body = "New Lineups Avaiable",
-                    title = "Lineups Updated"
+                    body = "This is a Test Notification",
+                    title = "TEST NOTIFICATION"
                 };
-                Notification notification = new Notification
+                NotificationClient notification = new NotificationClient
                 {
                     to = "/topics/lineups_update",
                     data = nm,
                     notification = no
                 };
+
+
+                //Save Notification to DB
+                List<User> users = dbContext.Users.ToList();
+                foreach (User u in users)
+                {
+                    dbContext.Notifications.Add(new Notification
+                    {
+                        Body = no.body,
+                        Title = no.title,
+                        UserId = u.Id,
+                        CreatedAt = DateTime.Now
+                    });
+                    dbContext.SaveChanges();
+                }
+
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(notification);
                 client.Headers["Content-Type"] = "application/json";
                 client.Headers["Authorization"] = "key=AAAA2yHRE0w:APA91bEVyqARWsF5_HaCUdhfNEA3K1nxkDTOSES2nzYqmj8J2PeAJ2lTRdyrMPEJ7xEjyudcuCjrevvpfFCCAtNNmuTpIbL68j2KaSAYdpxoESap3Uqx1R6yovQOnAy-8ikoyL2iFFBJRPdDQANwvHsjflGIr3bKKA";

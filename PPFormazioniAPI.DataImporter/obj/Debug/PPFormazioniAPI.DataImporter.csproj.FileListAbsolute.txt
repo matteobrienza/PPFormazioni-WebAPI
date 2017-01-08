@@ -18,14 +18,16 @@ C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniA
 C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe
 C:\Users\Matteo\documents\visual studio 2015\Projects\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.exe.config
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.exe.manifest
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.application
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.exe
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\EntityFramework.dll
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DAL.exe
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.Models.exe
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DAL.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.Models.pdb
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\EntityFramework.xml
@@ -34,9 +36,7 @@ C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImpor
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\HtmlAgilityPack.xml
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.csprojResolveAssemblyReference.cache
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.pdb
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.exe.manifest
-C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\bin\Debug\PPFormazioniAPI.DataImporter.application
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe.manifest
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.application
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.exe
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DataImporter\obj\Debug\PPFormazioniAPI.DataImporter.pdb

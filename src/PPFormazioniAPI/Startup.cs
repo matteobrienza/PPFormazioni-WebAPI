@@ -35,6 +35,8 @@ namespace PPFormazioniAPI
 
             services.AddScoped((_) => new PPFormazioniContext(Configuration["ConnectionStrings:DefaultConnection"]));
 
+            // Inject an implementation of ISwaggerProvider with defaulted settings applied
+            services.AddSwaggerGen();
 
         }
 
@@ -45,6 +47,12 @@ namespace PPFormazioniAPI
             loggerFactory.AddDebug();
 
             app.UseMvc();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+            app.UseSwaggerUi();
         }
     }
 }

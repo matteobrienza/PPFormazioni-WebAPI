@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PPFormazioniAPI.DAL
 {
-    public class PPFormazioniDatabaseInitializer : DropCreateDatabaseAlways<PPFormazioniContext>
+    public class PPFormazioniDatabaseInitializer : DropCreateDatabaseIfModelChanges<PPFormazioniContext>
     {
         protected override void Seed(PPFormazioniContext context)
         {
@@ -181,6 +181,10 @@ namespace PPFormazioniAPI.DAL
                     teams.ForEach(x => context.Teams.Add(x));
 
                     teams.ForEach(x => c.Teams.Add(x));
+
+                    context.SaveChanges();
+
+                    teams.ForEach(t => t.Logo_URL = Constants.LogoUrls[t.Id]);
 
                     context.SaveChanges();
                 }

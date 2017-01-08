@@ -179,16 +179,32 @@ namespace PPFormazioniAPI.Controllers
                 return null;
             }
         }
-
+        
         [HttpGet("{id}/players")]
-        public IEnumerable<Player> GetPlayers(int id)
+        public IEnumerable<Player> GetPlayersByRole(int id, [FromQuery] string[] role)
         {
             try
             {
-                return (from p in dbContext.Players
-                        join t in dbContext.Teams on p.TeamId equals t.Id
-                        where t.ChampionshipId == id
-                        select p).ToList();
+                if(role.Length != 0)
+                {
+                    List<Player> result = new List<Player>();
+                    foreach(string position in role)
+                    {
+                        List<Player> r = (from p in dbContext.Players
+                                  join t in dbContext.Teams on p.TeamId equals t.Id
+                                  where t.ChampionshipId == id && p.Position.Contains(position)
+                                  select p).ToList();
+                        result.AddRange(r);
+                    }
+                    return result;
+                }
+                else
+                {
+                    return (from p in dbContext.Players
+                            join t in dbContext.Teams on p.TeamId equals t.Id
+                            where t.ChampionshipId == id
+                            select p).ToList();
+                }
             }
             catch (Exception e)
             {
