@@ -14,5 +14,6 @@ namespace PPFormazioniAPI.Models
         public string Avatar { get; set; }
         public string AuthToken { get; set; } //API AUTH PURPOSE
         public string Created_At { get; set; }
+        public virtual List<UserPlayer> LineupPlayers { get; set; }
     }
 }

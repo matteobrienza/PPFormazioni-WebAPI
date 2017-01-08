@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PPFormazioniAPI.DAL;
+using Newtonsoft.Json;
 
 namespace PPFormazioniAPI
 {
@@ -29,9 +30,11 @@ namespace PPFormazioniAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
 
             services.AddScoped((_) => new PPFormazioniContext(Configuration["ConnectionStrings:DefaultConnection"]));
 
@@ -45,7 +48,7 @@ namespace PPFormazioniAPI
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            
             app.UseMvc();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint

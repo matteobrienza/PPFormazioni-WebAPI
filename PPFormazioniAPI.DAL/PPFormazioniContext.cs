@@ -39,6 +39,7 @@ namespace PPFormazioniAPI.DAL
         public DbSet<TeamChampionshipStats> TeamsChampionshipStats { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<UserPlayer> UserPlayersLineup { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -46,7 +47,18 @@ namespace PPFormazioniAPI.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<User>()
+                .HasMany<UserPlayer>(p => p.LineupPlayers)
+                .WithMany(upl => upl.Users)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("UserRefId");
+                    cs.MapRightKey("PlayerId");
+                    cs.ToTable("UserPlayerLineup");
+                });
+
         }
-        
+
     }
 }

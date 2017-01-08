@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http;
@@ -28,7 +27,8 @@ namespace PPFormazioniAPI.Controllers
             try
             {
                 return dbContext.Users.ToList();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -59,12 +59,104 @@ namespace PPFormazioniAPI.Controllers
             public string Name { get; set; }
             public bool Selected { get; set; }
         }
-        
+
+        [HttpGet("{id}/lineup")]
+        public IEnumerable<UserPlayer> GetUserLineup(int id)
+        {
+            try
+            {
+                User u = dbContext.Users.Where(us => us.Id == id).FirstOrDefault();
+                return u.LineupPlayers.ToList();
+            }catch(Exception e)
+            {
+                return null;
+            }
+        }
 
         [HttpPost("{id}/lineup")]
-        public ActionResult SaveLineups([FromBody]PostModel Lineup)
+        public void SaveLineups(int id, [FromBody]List<PlayerModel> players)
         {
-            return null;
+            try
+            {
+                Championship championship = dbContext.Championships.Where(c => c.Id == 1).FirstOrDefault();
+
+                List<PlayerMatch> CurrentDayPlayersMatch = (from pm in dbContext.PlayerMatches
+                                                            join m in dbContext.Matches on pm.MatchId equals m.Id
+                                                            join d in dbContext.Days on m.DayId equals d.Id
+                                                            where d.Number == championship.CurrentMatchDayNumber
+                                                            select pm).ToList();
+
+                User user = dbContext.Users.Where(u => u.Id == id).FirstOrDefault();
+
+                List<UserPlayer> UserPlayers = new List<UserPlayer>();
+
+                foreach (PlayerModel pm in players)
+                {
+                    Player player = dbContext.Players.Where(pl => pl.Id == pm.Id).FirstOrDefault();
+                    
+                    UserPlayer upl = dbContext.UserPlayersLineup.Where(up => up.Id == player.Id).FirstOrDefault();
+                    if (upl == null)
+                    {
+                        PlayerMatch plm_cds = CurrentDayPlayersMatch.Where(plm => plm.PlayerId == player.Id && plm.NewspaperId == 1).FirstOrDefault();
+                        int cds_status;
+                        int ss_status;
+                        int gds_status;
+
+                        if (plm_cds != null)
+                        {
+                            cds_status = plm_cds.Status;
+                        }
+                        else
+                        {
+                            cds_status = 2;
+                        }
+
+                        PlayerMatch plm_gds = CurrentDayPlayersMatch.Where(plm => plm.PlayerId == player.Id && plm.NewspaperId == 2).FirstOrDefault();
+                        if (plm_gds != null)
+                        {
+                            gds_status = plm_gds.Status;
+                        }
+                        else
+                        {
+                            gds_status = 2;
+                        }
+
+                        PlayerMatch plm_ss = CurrentDayPlayersMatch.Where(plm => plm.PlayerId == player.Id && plm.NewspaperId == 3).FirstOrDefault();
+                        if (plm_ss != null)
+                        {
+                            ss_status = plm_ss.Status;
+                        }
+                        else
+                        {
+                            ss_status = 2;
+                        }
+
+                        
+                        upl = new UserPlayer
+                        {
+                            Id = player.Id,
+                            Name = player.Name,
+                            Number = player.Number,
+                            GdS_Status = gds_status,
+                            CdS_Status = cds_status,
+                            SS_Status = ss_status
+                        };
+                        dbContext.UserPlayersLineup.Add(upl);
+                        dbContext.SaveChanges();
+                    }
+                    
+                    UserPlayers.Add(upl);
+                }
+
+                user.LineupPlayers = UserPlayers;
+
+                dbContext.SaveChanges();
+
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
         // POST api/users
@@ -122,7 +214,7 @@ namespace PPFormazioniAPI.Controllers
 
 
         }
-        
+
 
         [HttpGet("{id}/notifications")]
         public IEnumerable<Notification> getNotifications(int id)
@@ -130,7 +222,8 @@ namespace PPFormazioniAPI.Controllers
             try
             {
                 return dbContext.Notifications.Where(n => n.UserId == id).ToList();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -143,7 +236,7 @@ namespace PPFormazioniAPI.Controllers
 
             Notification n_remove = user_notifications.Where(n => n.Id == notificationId).FirstOrDefault();
 
-            if(n_remove != null)
+            if (n_remove != null)
             {
                 dbContext.Notifications.Remove(n_remove);
 
@@ -153,7 +246,7 @@ namespace PPFormazioniAPI.Controllers
 
 
         #region TEST
-        [HttpGet("{id}/send")]
+        [HttpGet("send")]
         public void SendNotifications(int id)
         {
             string result = "";
@@ -199,7 +292,7 @@ namespace PPFormazioniAPI.Controllers
 
             System.Diagnostics.Debug.WriteLine(result);
             Console.WriteLine(result);
-            
+
         }
         #endregion
     }

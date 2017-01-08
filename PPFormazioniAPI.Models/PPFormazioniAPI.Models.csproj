@@ -68,7 +68,7 @@
     <Compile Include="Models\TeamChampionshipStatsWithDetail.cs" />
     <Compile Include="Models\TeamNewspaperReliability.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserLineup.cs" />
+    <Compile Include="Models\UserPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
