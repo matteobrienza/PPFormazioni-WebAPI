@@ -9,5 +9,6 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <NameOfLastUsedPublishProfile>ppformazioni - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

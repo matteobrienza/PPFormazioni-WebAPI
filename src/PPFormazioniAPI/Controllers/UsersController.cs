@@ -275,46 +275,41 @@ namespace PPFormazioniAPI.Controllers
             }
         }
 
+      
 
         #region TEST
         [HttpGet("send")]
         public void SendNotifications(int id)
         {
+            NotificationMessage nm = new NotificationMessage
+            {
+                body = "This is a Test Notification",
+                title = "TEST NOTIFICATION"
+            };
+            NotificationObject no = new NotificationObject
+            {
+                body = "This is a Test Notification",
+                title = "TEST NOTIFICATION"
+            };
+            NotificationClient notification = new NotificationClient
+            {
+                to = "/topics/lineups_update",
+                data = nm,
+                notification = no
+            };
+
+            string saveNotificationResult = "";
+            using (var client = new System.Net.WebClient())
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(nm);
+                client.Headers["Content-Type"] = "application/json";
+                saveNotificationResult = client.UploadString("http://ppformazioni.azurewebsites.net/api/notification", "POST", json);
+                //saveNotificationResult = client.UploadString("http://localhost:3099/api/notification", "POST", json);
+            }
+
             string result = "";
             using (var client = new System.Net.WebClient())
             {
-                NotificationMessage nm = new NotificationMessage
-                {
-                    body = "This is a Test Notification",
-                    title = "TEST NOTIFICATION"
-                };
-                NotificationObject no = new NotificationObject
-                {
-                    body = "This is a Test Notification",
-                    title = "TEST NOTIFICATION"
-                };
-                NotificationClient notification = new NotificationClient
-                {
-                    to = "/topics/lineups_update",
-                    data = nm,
-                    notification = no
-                };
-
-
-                //Save Notification to DB
-                List<User> users = dbContext.Users.ToList();
-                foreach (User u in users)
-                {
-                    dbContext.Notifications.Add(new Notification
-                    {
-                        Body = no.body,
-                        Title = no.title,
-                        UserId = u.Id,
-                        CreatedAt = DateTime.Now
-                    });
-                    dbContext.SaveChanges();
-                }
-
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(notification);
                 client.Headers["Content-Type"] = "application/json";
                 client.Headers["Authorization"] = "key=AAAA2yHRE0w:APA91bEVyqARWsF5_HaCUdhfNEA3K1nxkDTOSES2nzYqmj8J2PeAJ2lTRdyrMPEJ7xEjyudcuCjrevvpfFCCAtNNmuTpIbL68j2KaSAYdpxoESap3Uqx1R6yovQOnAy-8ikoyL2iFFBJRPdDQANwvHsjflGIr3bKKA";

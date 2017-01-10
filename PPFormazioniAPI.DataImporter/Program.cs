@@ -21,6 +21,7 @@ namespace PPFormazioniAPI.DataImporter
         {
 
             PPFormazioniContext dbcontext = new PPFormazioniContext("Data Source=MATTEOBRIENZA;Initial Catalog=PPFormazioni;Integrated Security=True;MultipleActiveResultSets=True;");
+            //PPFormazioniContext dbcontext = new PPFormazioniContext("Server=tcp:ppformazioni.database.windows.net,1433;Initial Catalog=PPFormazioni;Persist Security Info=False;User ID=matteo.brienza@nttdata.com@ppformazioni.database.windows.net;Password=Sslazio1900!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300;");
 
             CreateCurrentDay(dbcontext);
 
@@ -29,13 +30,13 @@ namespace PPFormazioniAPI.DataImporter
                 dbcontext.PlayerMatches.Remove(pm);
             dbcontext.SaveChanges();
 
-            GetTeamsFromGazzetta(dbcontext);
+            //GetTeamsFromGazzetta(dbcontext);
 
             //GetTeamsFromCorriereDelloSport(dbcontext);
 
-            GetTeamsFromSkySport(dbcontext);
+            //GetTeamsFromSkySport(dbcontext);
 
-            //NotifyClient(dbcontext);
+            NotifyClient(dbcontext);
 
             Console.ReadLine();
         }
@@ -992,51 +993,43 @@ namespace PPFormazioniAPI.DataImporter
 
         public static void NotifyClient(PPFormazioniContext dbcontext)
         {
-            Console.WriteLine();
-            Console.WriteLine("FCM - Starting Notify Android Client");
+            NotificationMessage nm = new NotificationMessage
+            {
+                body = "This is a Test Notification",
+                title = "TEST NOTIFICATION"
+            };
+            NotificationObject no = new NotificationObject
+            {
+                body = "This is a Test Notification",
+                title = "TEST NOTIFICATION"
+            };
+            NotificationClient notification = new NotificationClient
+            {
+                to = "/topics/lineups_update",
+                data = nm,
+                notification = no
+            };
+
+            string saveNotificationResult = "";
+            using (var client = new System.Net.WebClient())
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(nm);
+                client.Headers["Content-Type"] = "application/json";
+                saveNotificationResult = client.UploadString("http://ppformazioni.azurewebsites.net/api/notification", "POST", json);
+                //saveNotificationResult = client.UploadString("http://localhost:3099/api/notification", "POST", json);
+            }
+
             string result = "";
             using (var client = new System.Net.WebClient())
             {
-                NotificationMessage nm = new NotificationMessage
-                {
-                    body = "New Lineups Avaiable",
-                    title = "Lineups Updated!"
-                };
-                NotificationObject no = new NotificationObject
-                {
-                    body = "New Lineups Avaiable",
-                    title = "Lineups Updated"
-                };
-                NotificationClient notification = new NotificationClient
-                {
-                    to = "/topics/lineups_update",
-                    data = nm,
-                    notification = no
-                };
-
-
-                //Save Notification to DB
-                List<User> users = dbcontext.Users.ToList();
-                foreach(User u in users)
-                {
-                    dbcontext.Notifications.Add(new Notification
-                    {
-                         Body = no.body,
-                         Title = no.title,
-                         UserId = u.Id,
-                         CreatedAt = DateTime.Now
-                    });
-                    dbcontext.SaveChanges();
-                }
-
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(notification);
                 client.Headers["Content-Type"] = "application/json";
                 client.Headers["Authorization"] = "key=AAAA2yHRE0w:APA91bEVyqARWsF5_HaCUdhfNEA3K1nxkDTOSES2nzYqmj8J2PeAJ2lTRdyrMPEJ7xEjyudcuCjrevvpfFCCAtNNmuTpIbL68j2KaSAYdpxoESap3Uqx1R6yovQOnAy-8ikoyL2iFFBJRPdDQANwvHsjflGIr3bKKA";
                 result = client.UploadString("https://fcm.googleapis.com/fcm/send", "POST", json);
             }
 
-            Debug.WriteLine(result);
-            Console.WriteLine("FCM - Operation Result: " +  result);
+            System.Diagnostics.Debug.WriteLine(result);
+            Console.WriteLine(result);
         }
 
 

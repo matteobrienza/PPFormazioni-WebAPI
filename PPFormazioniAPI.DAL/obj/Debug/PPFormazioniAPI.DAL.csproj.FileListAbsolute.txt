@@ -26,3 +26,7 @@ C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\D
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.exe
 C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.pdb
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.DAL.exe.manifest
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\bin\Debug\PPFormazioniAPI.DAL.application
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.exe.manifest
+C:\Users\Matteo\Source\Repos\PPFormazioni\PPFormazioni\PPFormazioniAPI.DAL\obj\Debug\PPFormazioniAPI.DAL.application

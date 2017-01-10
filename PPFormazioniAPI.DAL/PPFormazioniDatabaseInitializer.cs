@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PPFormazioniAPI.DAL
 {
-    public class PPFormazioniDatabaseInitializer : DropCreateDatabaseIfModelChanges<PPFormazioniContext>
+    public class PPFormazioniDatabaseInitializer : DropCreateDatabaseAlways<PPFormazioniContext>
     {
         protected override void Seed(PPFormazioniContext context)
         {
