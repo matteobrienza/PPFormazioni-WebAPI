@@ -995,13 +995,13 @@ namespace PPFormazioniAPI.DataImporter
         {
             NotificationMessage nm = new NotificationMessage
             {
-                body = "This is a Test Notification",
-                title = "TEST NOTIFICATION"
+                body = "New Lineups Avaiable",
+                title = "Lineups Updated!"
             };
             NotificationObject no = new NotificationObject
             {
-                body = "This is a Test Notification",
-                title = "TEST NOTIFICATION"
+                body = "New Lineups Avaiable",
+                title = "Lineups Updated"
             };
             NotificationClient notification = new NotificationClient
             {
@@ -1031,6 +1031,7 @@ namespace PPFormazioniAPI.DataImporter
             System.Diagnostics.Debug.WriteLine(result);
             Console.WriteLine(result);
         }
+        
 
 
 
