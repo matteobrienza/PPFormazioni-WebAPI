@@ -4,8 +4,10 @@ using PPFormazioniAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PPFormazioniAPI.DAL
@@ -223,6 +225,13 @@ namespace PPFormazioniAPI.DAL
                             MarketValue = (string)tm["marketValue"]
                         }).ToList();
 
+                        foreach(Player player in players)
+                        {
+                            string name = player.Name;
+                            string normalizedName = RemoveDiacritics(name);
+                            player.Name = normalizedName;
+                        }
+
                         players.ForEach(p => context.Players.Add(p));
 
                         players.ForEach(p => t.Players.Add(p));
@@ -344,6 +353,24 @@ namespace PPFormazioniAPI.DAL
 
             }
             
+        }
+
+
+        static string RemoveDiacritics(string text)
+        {
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char ch in formD)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
         }
 
     }

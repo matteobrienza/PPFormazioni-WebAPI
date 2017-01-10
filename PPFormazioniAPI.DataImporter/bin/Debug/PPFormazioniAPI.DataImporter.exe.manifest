@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPFormazioniAPI.DAL.exe" size="26112">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PPFormazioniAPI.DAL.exe" size="26624">
       <assemblyIdentity name="PPFormazioniAPI.DAL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>W1Z/KzY3amDacYE8JYxLjFlSt/bX1EqYXiY9hKoyKGM=</dsig:DigestValue>
+        <dsig:DigestValue>egr53x5T86F0S6Y53DwryaJNQ4434Ky/Mp9gVmMIJ5k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -109,7 +109,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nikMfy/paYLjTTqR7md0YjZROI+zKBmD0VEK3BqbT14=</dsig:DigestValue>
+        <dsig:DigestValue>uC62iBvf93rqevwkNOVjNjeox39GvC4td8mw5H34524=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kajGRWjvqCVF2P7WssXha1/m9Q2CU0p3yMKCELKyx1g=</dsig:DigestValue>
+        <dsig:DigestValue>2gIQYljXebuAgm+K3Pd2KKNeh0ssNunVpodpSbkXXDA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

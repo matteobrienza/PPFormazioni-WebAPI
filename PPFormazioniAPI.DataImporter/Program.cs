@@ -31,13 +31,11 @@ namespace PPFormazioniAPI.DataImporter
 
             GetTeamsFromGazzetta(dbcontext);
 
-            GetTeamsFromCorriereDelloSport(dbcontext);
+            //GetTeamsFromCorriereDelloSport(dbcontext);
 
             GetTeamsFromSkySport(dbcontext);
 
-            NotifyClient(dbcontext);
-
-            //START WEB API
+            //NotifyClient(dbcontext);
 
             Console.ReadLine();
         }

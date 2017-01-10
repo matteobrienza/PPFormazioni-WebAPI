@@ -138,10 +138,14 @@ namespace PPFormazioniAPI.Controllers
             {
                 Newspaper newspaper = dbContext.Newspapers.Where(n => n.ChampionshipId == id && n.Id == newspaperId).FirstOrDefault();
 
-                return (from pm in dbContext.PlayerMatches
-                        join m in dbContext.Matches on pm.MatchId equals m.Id
-                        where pm.NewspaperId == newspaper.Id
-                        select m).ToList();
+                if (newspaper != null)
+                {
+                    return (from pm in dbContext.PlayerMatches
+                            join m in dbContext.Matches on pm.MatchId equals m.Id
+                            where pm.NewspaperId == newspaper.Id
+                            select m).ToList();
+                }
+                else return new List<Match>();
             }
             catch (Exception e)
             {
@@ -155,7 +159,7 @@ namespace PPFormazioniAPI.Controllers
             try
             {
                 Newspaper newspaper = dbContext.Newspapers.Where(n => n.ChampionshipId == id && n.Id == newspaperId).FirstOrDefault();
-
+                
                 Match m = dbContext.Matches.Where(mat => mat.Id == matchId).FirstOrDefault();
 
                 List<PlayerMatch> plMatch = (from pm in dbContext.PlayerMatches
