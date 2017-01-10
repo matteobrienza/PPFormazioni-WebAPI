@@ -967,7 +967,7 @@ namespace PPFormazioniAPI.DataImporter
                                 MatchId = match.Id,
                                 NewspaperId = 3,
                                 PlayerId = playerAway.Id,
-                                Status = 1
+                                Status = 2
                             };
 
                             dbcontext.PlayerMatches.Add(pmAway);

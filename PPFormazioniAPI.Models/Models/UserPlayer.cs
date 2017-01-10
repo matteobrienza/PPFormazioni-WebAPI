@@ -14,6 +14,6 @@ namespace PPFormazioniAPI.Models
         public int CdS_Status { get; set; }
         public int GdS_Status { get; set; }
         public int SS_Status { get; set; }
-        public List<User> Users { get; set; }
+        public virtual List<User> Users { get; set; }
     }
 }

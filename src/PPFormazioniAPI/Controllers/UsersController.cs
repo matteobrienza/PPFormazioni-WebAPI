@@ -48,6 +48,28 @@ namespace PPFormazioniAPI.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            try
+            {
+                User u = dbContext.Users.Where(us => us.Id == id).FirstOrDefault();
+
+                List<UserPlayer> upls = dbContext.UserPlayersLineup.Where(upl => upl.Users.Any(user => user.Id == u.Id)).ToList();
+
+                upls.ForEach(uspl => uspl.Users.Remove(u));
+
+                dbContext.Users.Remove(u);
+
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+
         public class PostModel
         {
             public List<PlayerModel> Lineup { get; set; }
@@ -88,6 +110,15 @@ namespace PPFormazioniAPI.Controllers
 
                 User user = dbContext.Users.Where(u => u.Id == id).FirstOrDefault();
 
+                List<UserPlayer> toRemove = dbContext.UserPlayersLineup.Where(ust => ust.Users.Any(us => us.Id == user.Id)).ToList();
+
+                if (toRemove != null)
+                {
+                    toRemove.ForEach(lp => user.LineupPlayers.Remove(lp));
+                    toRemove.ForEach(tr => dbContext.UserPlayersLineup.Remove(tr));
+                    dbContext.SaveChanges();
+                }
+                
                 List<UserPlayer> UserPlayers = new List<UserPlayer>();
 
                 foreach (PlayerModel pm in players)
@@ -161,7 +192,7 @@ namespace PPFormazioniAPI.Controllers
 
         // POST api/users
         [HttpPost]
-        public User Post([FromBody]string value)
+        public JsonResult Post([FromBody]string value)
         {
 
             IHeaderDictionary headers = HttpContext.Request.Headers;
@@ -205,10 +236,10 @@ namespace PPFormazioniAPI.Controllers
 
                     }
 
-                    return user;
+                    return new JsonResult(user);
 
                 }
-                else return null;
+                else return new JsonResult(response.Content);
             }
 
 
